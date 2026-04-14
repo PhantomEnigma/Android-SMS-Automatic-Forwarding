@@ -38,4 +38,4 @@ jobs:
         with:
           name: sms-forwarder-debug-apk
           # Note: The path is relative to the working-directory set above
-          path: android-studio-project/SMS-Forwarding/build/outputs/apk/debug/*.apk
+          path: SMS-Forwarding/build/outputs/apk/debug/*.apk
