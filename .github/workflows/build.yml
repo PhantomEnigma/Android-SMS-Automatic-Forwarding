@@ -30,12 +30,12 @@ jobs:
         # Using assembleDebug first is safer for testing
         run: ./gradlew assembleDebug
 
-      - name: List dir
-        run: ls && ls SMS* && ls && ls ..
+      - name: Find apk
+        run: find . -name "*.apk"
         
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: sms-forwarder-debug-apk
           # Note: The path is relative to the working-directory set above
-          path: SMS-Forwarding/build/outputs/apk/debug/*.apk
+          path: **/*.apk
