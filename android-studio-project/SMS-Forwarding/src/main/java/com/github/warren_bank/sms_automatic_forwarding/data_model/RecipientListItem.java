@@ -134,7 +134,7 @@ public final class RecipientListItem {
         ? "+"
         : "";
 
-      String numeric = input.replaceAll("[^0-9]", "");
+      String numeric = input.replaceAll("[^A-Za-z0-9-]", "");
 
       return prefix + numeric;
     }
