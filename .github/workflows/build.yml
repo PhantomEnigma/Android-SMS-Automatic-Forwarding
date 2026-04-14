@@ -3,12 +3,14 @@ name: Build Android APK
 on:
   push:
     branches: [ "master", "main" ]
-  pull_request:
-    branches: [ "master", "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    # This tells GitHub to run EVERY step inside your project folder
+    defaults:
+      run:
+        working-directory: ./android-studio-project
 
     steps:
       - name: Checkout code
@@ -21,17 +23,16 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - name: Cd
-        run: cd android-studio-project && ls
-
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew assembleRelease
+        # Using assembleDebug first is safer for testing
+        run: ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: sms-forwarder-apk
-          path: app/build/outputs/apk/release/*.apk
+          name: sms-forwarder-debug-apk
+          # Note: The path is relative to the working-directory set above
+          path: android-studio-project/SMS-Forwarding/build/outputs/apk/debug/*.apk
