@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # This tells GitHub to run EVERY step inside your project folder
+    # This tells GitHub to run EVERY step inside your project
     defaults:
       run:
         working-directory: ./android-studio-project
